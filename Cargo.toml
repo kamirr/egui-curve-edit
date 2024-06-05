@@ -1,0 +1,13 @@
+[package]
+name = "egui-curve-edit"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["serde"]
+serde = ["cgmath/serde", "dep:serde"]
+
+[dependencies]
+cgmath = "0.18.0"
+egui = "0.21.0"
+serde = { version = "1", features = ["derive"], optional = true }
