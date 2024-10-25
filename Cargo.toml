@@ -9,5 +9,5 @@ serde = ["cgmath/serde", "dep:serde"]
 
 [dependencies]
 cgmath = "0.18.0"
-egui = "0.21.0"
+egui = "0.29.1"
 serde = { version = "1", features = ["derive"], optional = true }
