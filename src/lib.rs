@@ -1,8 +1,8 @@
 use std::ops::RangeInclusive;
 
 use cgmath::{InnerSpace, Point2, Vector2, Zero};
-use egui::epaint::{Color32, Pos2, Rounding, Shape, Stroke, Vec2};
-use egui::{Painter, Rect, Sense, Widget};
+use egui::epaint::{Color32, Pos2, Shape, Stroke, Vec2};
+use egui::{CornerRadius, Painter, Rect, Sense, StrokeKind, Widget};
 
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -174,9 +174,9 @@ impl<'a> CurveEdit<'a> {
             PtKind::Control => {
                 let sz = 6.0;
                 let rect = Rect::from_x_y_ranges(-sz..=sz, -sz..=sz).translate(pos.to_vec2());
-                painter.rect_stroke(rect, Rounding::ZERO, stroke);
+                painter.rect_stroke(rect, CornerRadius::ZERO, stroke, StrokeKind::Inside);
                 if selected {
-                    painter.rect_filled(rect.shrink(3.0), Rounding::ZERO, stroke.color);
+                    painter.rect_filled(rect.shrink(3.0), CornerRadius::ZERO, stroke.color);
                 }
             }
         }
@@ -189,7 +189,7 @@ impl<'a> Widget for CurveEdit<'a> {
 
         let rect = resp.rect.shrink(8.0);
 
-        painter.rect_filled(resp.rect, Rounding::ZERO, Color32::BLACK);
+        painter.rect_filled(resp.rect, CornerRadius::ZERO, Color32::BLACK);
 
         let curve_x_start = self.curve.halfs[0].start.x;
         let curve_x_end = self.curve.end.x;
